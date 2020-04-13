@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     """
-    from HypelinkedModelSerializer:
+    from HyperlinkedModelSerializer:
 
         * A 'url' field is included instead of the 'id' field.
         * Relationships to other instances are hyperlinks, instead of primary keys.
