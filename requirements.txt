@@ -3,7 +3,7 @@ pytz==2019.3
 gunicorn==20.0.4
 psycopg2-binary==2.8.5
 python-dotenv==0.12.0
-djangorestframework==3.11.0
+djangorestframework==3.11.0  # last version supporting 1.11 https://github.com/encode/django-rest-framework/blob/3.11.0/docs/community/3.11-announcement.md
 markdown==3.2.1
 django-filter==2.2.0
 coreapi==2.3.3
