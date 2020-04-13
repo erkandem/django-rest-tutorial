@@ -1,3 +1,5 @@
+.env
+.env.docker
 venv
 .idea/
 # Created by https://www.gitignore.io/api/python,pycharm
