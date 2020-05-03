@@ -1,0 +1,27 @@
+version: '3'
+services:
+  db:
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    build:
+      dockerfile: dockerfiles/db/Dockerfile
+      context: .
+    volumes:
+      - django_rest_database:/var/lib/postgresql/data
+    ports:
+    - 5433:5432
+  django_app:
+    environment:
+      - POSTGRES_INITIAL_PASSWORD=postgres
+    build:
+      context: .
+      dockerfile: dockerfiles/django/Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+volumes:
+  # get more details (e.g. Mountpoint on local drive)
+  # docker volume inspect django_rest_database
+  django_rest_database:
+
