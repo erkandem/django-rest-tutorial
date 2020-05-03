@@ -12,7 +12,7 @@ sleep_duration=5
 echo "sleeping $sleep_duration seconds"
 sleep $sleep_duration
 
-until PGPASSWORD=$POSTGRES_INITIAL_PASSWORD psql -h "$host" -U postgres -c '\q'; do
+until PGPASSWORD=$POSTGRES_INITIAL_PASSWORD psql -h  "$host" -U postgres -p 5432 -c '\q'; do
   >&2 echo "Postgres is unavailable - sleeping"
   sleep 2
 done
