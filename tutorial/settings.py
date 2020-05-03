@@ -33,13 +33,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'options_data.apps.OptionsConfig',
+    'quickstart.apps.QuickstartConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +86,16 @@ DATABASES = {
         'HOST': os.getenv('POSTGRES_HOST'),
         'PORT': os.getenv('POSTGRES_PORT'),
         'USER': os.getenv('POSTGRES_USER'),
+    },
+    # not used yet. How do I indicate to django which database to use with a specific model?
+    # https://docs.djangoproject.com/en/1.11/topics/db/multi-db/#automatic-database-routing
+    'migrate2020': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('POSTGRES_DATA_DATABASE'),
+        'PASSWORD': os.getenv('POSTGRES_DATA_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_DATA_HOST'),
+        'PORT': os.getenv('POSTGRES_DATA_PORT'),
+        'USER': os.getenv('POSTGRES_DATA_USER'),
     }
 }
 
