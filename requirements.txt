@@ -9,3 +9,4 @@ django-filter==2.2.0
 coreapi==2.3.3
 Pygments==2.6.1
 django-guardian==1.5.1  # last version supporting 1.11
+django-filter==2.2.0
