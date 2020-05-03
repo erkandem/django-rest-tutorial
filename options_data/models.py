@@ -13,6 +13,8 @@ SELECT * FROM options_rawdata WHERE exchange = 'USETF' LIMIT 1
 ```
 """
 from django.db import models
+CME_SYMBOL_CHOICES = [('AD', 'AD'), ('BO', 'BO'), ('BP', 'BP'), ('BZ', 'BZ'), ('C', 'C'), ('CD', 'CD'), ('CL', 'CL'), ('EC', 'EC'), ('ES', 'ES'), ('FV', 'FV'), ('GC', 'GC'), ('HG', 'HG'), ('HO', 'HO'), ('JY', 'JY'), ('KW', 'KW'), ('LC', 'LC'), ('LN', 'LN'), ('NG', 'NG'), ('NQ', 'NQ'), ('RB', 'RB'), ('S', 'S'), ('SI', 'SI'), ('SM', 'SM'), ('TU', 'TU'), ('TY', 'TY'), ('US', 'US'), ('W', 'W')]
+CME_EXCHANGE = [('CME', 'CME')]
 
 
 class OptionRawDataModel(models.Model):
@@ -51,28 +53,3 @@ class OptionRawDataModel(models.Model):
         db_table = 'options_rawdata'
         ordering = ['id']  # order by sth so pagination doesn't get confused
 
-
-class CmeDataSetsModel(OptionRawDataModel):
-    CME_SYMBOL_CHOICES = [('AD', 'AD'), ('BO', 'BO'), ('BP', 'BP'), ('BZ', 'BZ'), ('C', 'C'), ('CD', 'CD'), ('CL', 'CL'), ('EC', 'EC'), ('ES', 'ES'), ('FV', 'FV'), ('GC', 'GC'), ('HG', 'HG'), ('HO', 'HO'), ('JY', 'JY'), ('KW', 'KW'), ('LC', 'LC'), ('LN', 'LN'), ('NG', 'NG'), ('NQ', 'NQ'), ('RB', 'RB'), ('S', 'S'), ('SI', 'SI'), ('SM', 'SM'), ('TU', 'TU'), ('TY', 'TY'), ('US', 'US'), ('W', 'W')]
-    CME_EXCHANGE = [('CME', 'CME')]
-
-    class Meta:
-        proxy = True
-
-    def apply_choices(self):
-        pass
-
-    '''
-class CmeDataSetsModel(OptionRawDataModel):
-    CME_SYMBOL_CHOICES = [('AD', 'AD'), ('BO', 'BO'), ('BP', 'BP'), ('BZ', 'BZ'), ('C', 'C'), ('CD', 'CD'), ('CL', 'CL'), ('EC', 'EC'), ('ES', 'ES'), ('FV', 'FV'), ('GC', 'GC'), ('HG', 'HG'), ('HO', 'HO'), ('JY', 'JY'), ('KW', 'KW'), ('LC', 'LC'), ('LN', 'LN'), ('NG', 'NG'), ('NQ', 'NQ'), ('RB', 'RB'), ('S', 'S'), ('SI', 'SI'), ('SM', 'SM'), ('TU', 'TU'), ('TY', 'TY'), ('US', 'US'), ('W', 'W')]
-    exchange = models.CharField(max_length=6, choices=[('CME', 'CME')])
-    symbol = models.CharField(max_length=6, choices=CME_SYMBOL_CHOICES)
-
-above doesn't work because you can't override a parent fields in djanago.
-
-Instead, we use a method to restrict the possible symbols and exchange to the choices we want
-Also, We will use an proxy class. 
-https://docs.djangoproject.com/en/1.11/topics/db/models/#proxy-models
-
-
-'''
