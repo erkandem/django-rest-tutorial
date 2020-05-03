@@ -8,8 +8,16 @@ WORKDIR $working_directory
 ADD requirements.txt $working_directory
 RUN pip install -r requirements.txt
 ADD .env.docker  $working_directory/.env
+
 RUN mkdir $working_directory/tutorial
 ADD tutorial $working_directory/tutorial/
+
+RUN mkdir $working_directory/options_data
+ADD options_data $working_directory/options_data/
+
+RUN mkdir $working_directory/quickstart
+ADD quickstart $working_directory/quickstart/
+
 ADD wait-for-postgres.sh $working_directory
 ADD manage.py $working_directory
 
