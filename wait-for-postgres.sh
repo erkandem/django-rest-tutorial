@@ -14,7 +14,7 @@ sleep $sleep_duration
 
 until PGPASSWORD=$POSTGRES_INITIAL_PASSWORD psql -h  "$host" -U postgres -p 5432 -c '\q'; do
   >&2 echo "Postgres is unavailable - sleeping"
-  sleep 2
+  sleep 1
 done
 
 >&2 echo "Postgres is up - executing command"
