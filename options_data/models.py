@@ -19,13 +19,13 @@ class OptionRawDataModel(models.Model):
     """
     command to get the table schema `\d+ schema.table_name`
     """
-    id = models.CharField(db_column='pk', max_length=65, blank=False, primary_key=True)
-    security_type = models.CharField(max_length=3, blank=False)
-    exchange = models.CharField(max_length=6, blank=False)
-    symbol = models.CharField(max_length=6, blank=False)
-    option_symbol = models.CharField(max_length=6, blank=False)
+    id = models.CharField(db_column='pk', max_length=65, primary_key=True)
+    security_type = models.CharField(max_length=3)
+    exchange = models.CharField(max_length=6)
+    symbol = models.CharField(max_length=6)
+    option_symbol = models.CharField(max_length=6)
     option_maturity = models.CharField(max_length=6,  blank=False)
-    underlying_maturity = models.CharField(max_length=6, blank=False)
+    underlying_maturity = models.CharField(max_length=6)
     last_trading_day = models.DateField(blank=False)
     bizdt = models.DateField(blank=False)
     undprice = models.FloatField(blank=True, null=True)
@@ -65,8 +65,8 @@ class CmeDataSetsModel(OptionRawDataModel):
     '''
 class CmeDataSetsModel(OptionRawDataModel):
     CME_SYMBOL_CHOICES = [('AD', 'AD'), ('BO', 'BO'), ('BP', 'BP'), ('BZ', 'BZ'), ('C', 'C'), ('CD', 'CD'), ('CL', 'CL'), ('EC', 'EC'), ('ES', 'ES'), ('FV', 'FV'), ('GC', 'GC'), ('HG', 'HG'), ('HO', 'HO'), ('JY', 'JY'), ('KW', 'KW'), ('LC', 'LC'), ('LN', 'LN'), ('NG', 'NG'), ('NQ', 'NQ'), ('RB', 'RB'), ('S', 'S'), ('SI', 'SI'), ('SM', 'SM'), ('TU', 'TU'), ('TY', 'TY'), ('US', 'US'), ('W', 'W')]
-    exchange = models.CharField(max_length=6, blank=False, choices=[('CME', 'CME')])
-    symbol = models.CharField(max_length=6, blank=False, choices=CME_SYMBOL_CHOICES)
+    exchange = models.CharField(max_length=6, choices=[('CME', 'CME')])
+    symbol = models.CharField(max_length=6, choices=CME_SYMBOL_CHOICES)
 
 above doesn't work because you can't override a parent fields in djanago.
 
