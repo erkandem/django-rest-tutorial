@@ -10,34 +10,26 @@ class OptionRawDataViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class CMEOptionRawDataViewSet(viewsets.ReadOnlyModelViewSet):
+class CMEOptionRawDataViewSet(OptionRawDataViewSet):
     queryset = OptionRawDataModel.objects.filter(
         exchange__exact='CME'
     )
-    serializer_class = OptionRawDataSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 
-class EUREXOptionRawDataViewSet(viewsets.ReadOnlyModelViewSet):
+class EUREXOptionRawDataViewSet(OptionRawDataViewSet):
     queryset = OptionRawDataModel.objects.filter(
         exchange__exact='EUREX'
     )
-    serializer_class = OptionRawDataSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 
-class ICEOptionRawDataViewSet(viewsets.ReadOnlyModelViewSet):
+class ICEOptionRawDataViewSet(OptionRawDataViewSet):
     queryset = OptionRawDataModel.objects.filter(
         exchange__exact='ICE'
     )
-    serializer_class = OptionRawDataSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 
-class USETFOptionRawDataViewSet(viewsets.ReadOnlyModelViewSet):
+class USETFOptionRawDataViewSet(OptionRawDataViewSet):
     queryset = OptionRawDataModel.objects.filter(
         exchange__exact='USETF'
     )
-    serializer_class = OptionRawDataSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
