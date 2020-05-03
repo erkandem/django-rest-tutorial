@@ -20,12 +20,20 @@ https://github.com/encode/django-rest-framework/blob/e148637d6d15d07562e3588b86d
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from .quickstart import views
 from rest_framework import routers
+from options_data import views as options_data_views
+from quickstart import views as quickstart_views
+
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'group', views.GroupViewSet)
+router.register(r'users', quickstart_views.UserViewSet)
+router.register(r'group', quickstart_views.GroupViewSet)
+router.register(r'option', options_data_views.OptionRawDataViewSet, "option-general")
+router.register(r'options/cme', options_data_views.CMEOptionRawDataViewSet, "options-cme")
+router.register(r'options/ice', options_data_views.ICEOptionRawDataViewSet, "options-ice")
+router.register(r'options/eurex', options_data_views.EUREXOptionRawDataViewSet, "options-eurex")
+router.register(r'options/usetf', options_data_views.USETFOptionRawDataViewSet, "options-usetf")
+
 
 
 urlpatterns = [
