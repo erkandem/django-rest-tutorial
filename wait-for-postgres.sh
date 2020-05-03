@@ -8,8 +8,9 @@ host="$1"
 shift
 cmd="$@"
 
-echo sleeping ten seconds
-sleep 5
+sleep_duration=5
+echo "sleeping $sleep_duration seconds"
+sleep $sleep_duration
 
 until PGPASSWORD=$POSTGRES_INITIAL_PASSWORD psql -h "$host" -U postgres -c '\q'; do
   >&2 echo "Postgres is unavailable - sleeping"
