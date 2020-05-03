@@ -2,6 +2,7 @@ from .serializers import OptionRawDataSerializer
 from .models import OptionRawDataModel
 from rest_framework import viewsets
 from rest_framework import permissions
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class OptionRawDataViewSet(viewsets.ReadOnlyModelViewSet):
@@ -29,8 +30,13 @@ class ICEOptionRawDataViewSet(OptionRawDataViewSet):
 
 
 class USETFOptionRawDataViewSet(OptionRawDataViewSet):
+    filter_backends = [DjangoFilterBackend]
+    queryset = OptionRawDataModel.objects.filter(
+        exchange__exact='USETF'
+    )
+    filterset_fields = ['symbol', 'last_trading_day', 'strkpx', 'putcall']
 
-    def get_queryset(self):
+    def not_get_queryset(self):
         """
         instead of defining a queryset which may or may not implement
         filtering it is possible to use dynamic filtering by overwriting the
@@ -61,7 +67,5 @@ class USETFOptionRawDataViewSet(OptionRawDataViewSet):
 
         also: django_filters package
         """
-        queryset = OptionRawDataModel.objects.filter(
-            exchange__exact='USETF'
-        )
-        return queryset
+        not_a_queryset = None
+        return not_a_queryset
