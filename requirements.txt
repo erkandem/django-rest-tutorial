@@ -7,6 +7,6 @@ djangorestframework==3.11.0  # last version supporting 1.11 https://github.com/e
 markdown==3.2.1
 django-filter==2.2.0
 coreapi==2.3.3
-Pygments==2.6.1
+Pygments==2.7.4
 django-guardian==1.5.1  # last version supporting 1.11
 django-filter==2.2.0
